@@ -1,0 +1,27 @@
+# Render Blueprint for Web Service (Free plan compatible)
+services:
+  - name: fartbot-web
+    type: web
+    runtime: docker
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_USERNAMES
+        value: ""
+      - key: DATA_DIR
+        value: "./data"
+      - key: DB_PATH
+        value: "./data/fartbot.sqlite3"
+      - key: CLASSIFIER_MODE
+        value: "heuristic"
+      - key: CONFIDENCE_MIN
+        value: "0.55"
+      - key: MIN_VOICE_SECONDS
+        value: "1"
+      - key: MAX_VOICE_SECONDS
+        value: "12"
+      - key: PORT
+        value: "10000"
+    healthCheckPath: /healthz
