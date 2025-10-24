@@ -53,15 +53,7 @@ def main():
     app = web.Application()
     app.router.add_get("/", handle_root)
     app.router.add_get("/healthz", handle_health)
-
-    # attach aiogram webhook handler
-    from aiogram.webhook.aiohttp_server import setup_application
-
-# Вместо SimpleRequestHandler используем встроенный route регистратор:
-app.router.add_post("/webhook", dp.webhook_handler)
-
-# setup_application нужно только для graceful shutdown (опционально)
-setup_application(app, dp, bot=bot)
+    app.router.add_post("/webhook", dp.webhook_handler)
 
     app.on_startup.append(on_startup)
     app.on_cleanup.append(on_cleanup)
