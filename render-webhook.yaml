@@ -1,0 +1,16 @@
+services:
+  - name: fartbot-webhook
+    type: web
+    runtime: docker
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_USERNAMES
+        value: "RussianStatham"
+      - key: PORT
+        value: "10000"
+      - key: WEBHOOK_URL
+        value: ""
+    healthCheckPath: /healthz
